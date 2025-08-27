@@ -1,0 +1,77 @@
+//Creates a summary sheet for each year from a google sheet with multiple tabs covering multiple years
+//Key
+
+//"************" = insert link to source google sheet
+//"++" = insert tab name of source google sheet
+//"**:*" = enter range (ex: you want to start at column C row 7 and read every entry in that column after C7, it would be  C7:C)
+//I have two blocks here but you can have as many or as few as you want
+//Each block has two sort functions, 1 to sort the data by the first column in the filter function and 2nd to organize the data by the data in the 4th column of the filter function.
+//
+
+={
+  SORT(
+    SORT(
+      FILTER(
+        {
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "++", "")),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), "")
+        },
+        (LEN(IMPORTRANGE("************", "++!**:*")) > 0) *
+        (
+          IFERROR(
+            IF(
+              ISNUMBER(DATEVALUE(IMPORTRANGE("************", "++!**:*"))),
+              YEAR(DATEVALUE(IMPORTRANGE("************", "++!**:*"))) = 2025,
+              FALSE
+            ),
+            FALSE
+          )
+        )
+      ),
+      1, TRUE
+    ),
+    4, TRUE
+  );
+
+  SORT(
+    SORT(
+      FILTER(
+        {
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "++", "")),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
+          IFERROR(IMPORTRANGE("************", "++!**:*"), "")
+        },
+        (LEN(IMPORTRANGE("************", "++!**:*")) > 0) *
+        (
+          IFERROR(
+            IF(
+              ISNUMBER(DATEVALUE(IMPORTRANGE("************", "++!**:*"))),
+              YEAR(DATEVALUE(IMPORTRANGE("************", "++!**:*"))) = 2025,
+              FALSE
+            ),
+            FALSE
+          )
+        )
+      ),
+      1, TRUE
+    ),
+    4, TRUE
+  );
+
+////////////////////
+
+
+
+
+
