@@ -5,7 +5,11 @@
 //"++" = insert tab name of source google sheet
 //"**:*" = enter range (ex: you want to start at column C row 7 and read every entry in that column after C7, it would be  C7:C)
 //I have two blocks here but you can have as many or as few as you want
-//Each block has two sort functions, 1 to sort the data by the first column in the filter function and 2nd to organize the data by the data in the 4th column of the filter function.
+//Each block has two SORT functions, 1 to sort the data by the first column in the filter function and 2nd to organize the data by the data in the 4th column of the filter function.
+//FILTER to select and order data into destination sheet, each statment in the FILTER function will go to a column.
+//Uses IFERROR to allow continuation of the parsing of data and will just insert a blank cell.
+//IMPORTRANGE to get data from certain range of source sheet
+//ARRAYFORMULA(IF(LEN)) insert specified text into cell, represented by the -- in the formula below. It uses the LEN with an IF statement to see if the cell is empty.
 //
 
 ={
@@ -14,7 +18,7 @@
       FILTER(
         {
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
-          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "++", "")),
+          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "--", "")),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
@@ -44,7 +48,7 @@
       FILTER(
         {
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
-          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "++", "")),
+          ARRAYFORMULA(IF(LEN(IMPORTRANGE("************", "++!**:*")), "--", "")),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
           IFERROR(IMPORTRANGE("************", "++!**:*"), ""),
