@@ -1,0 +1,8 @@
+//Can check a date, extract the number of the month, and increase count if it meets the condition
+//Example, with the date 12/29/2025, it will extract the 12 and compare to it to the specified condition, and if it matches, it will add one to the count
+
+//Key
+//xx:x is the range
+//# is the condition
+
+=COUNTIF(ARRAYFORMULA(MONTH(**:*)), #)
